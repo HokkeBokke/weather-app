@@ -57,7 +57,7 @@ function App() {
         let y;
         if (index >= 1) y = new Date(forecast.hourly.time[index-1]);
         const c = new Date(time);
-        if (index == 0 || (y && (c.getDay() !== y.getDay()))) {
+        if (index === 0 || (y && (c.getDay() !== y.getDay()))) {
           return c.toLocaleString('nb-NO', {weekday: "long", hour: "numeric", minute: "numeric"});
         }
         return c.toLocaleTimeString('nb-NO', {hour: "numeric", minute: "numeric"});
