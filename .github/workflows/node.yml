@@ -24,10 +24,13 @@ jobs:
     steps:
       # Runs a single command using the runners shell
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd ..
+          npm install
 
       # Runs a set of commands using the runners shell
       - name: Start node server
         run: |
           tsc server/server.ts
+          npm run build
           node server/server.js
