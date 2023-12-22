@@ -35,6 +35,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Start node server
         run: |
+          CI=false
           tsc server/server.ts
           npm run build
           node server/server.js
