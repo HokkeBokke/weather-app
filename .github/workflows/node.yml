@@ -28,7 +28,9 @@ jobs:
           node-version: '20.x'
 
       - name: Show folder
-        run: ls -la
+        run: |
+          cd ..
+          ls -la
       
       # Runs a single command using the runners shell
       - name: Install dependencies
