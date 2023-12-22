@@ -26,6 +26,9 @@ jobs:
         uses: actions/setup-node@v4.0.1
         with: 
           node-version: '20.x'
+
+      - name: Show folder
+        run: ls -la
       
       # Runs a single command using the runners shell
       - name: Install dependencies
