@@ -50,3 +50,5 @@ jobs:
 
       - name: Deploy GitHub Pages site
         uses: actions/deploy-pages@v4.0.0
+        with:
+          token: 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
