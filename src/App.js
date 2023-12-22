@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import loadingImg from './loading.svg';
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useForecast from './components/useForecast';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 import { Line } from 'react-chartjs-2';
@@ -58,7 +57,7 @@ function App() {
         let y;
         if (index >= 1) y = new Date(forecast.hourly.time[index-1]);
         const c = new Date(time);
-        if (index == 0 || y && c.getDay() !== y.getDay()) {
+        if (index == 0 || (y && (c.getDay() !== y.getDay()))) {
           return c.toLocaleString('nb-NO', {weekday: "long", hour: "numeric", minute: "numeric"});
         }
         return c.toLocaleTimeString('nb-NO', {hour: "numeric", minute: "numeric"});
@@ -86,12 +85,12 @@ function App() {
           <li className='forecast-details'>
             <div className='d-flex flex-row'>
               <span className='forecast-time'>{new Date(forecast.hourly.time[i]).toLocaleTimeString('nb-NO', {hour: 'numeric', minute: 'numeric'})}</span>
-              <img src={`/weathericons/weather/svg/${chooseIconHourly(forecast.hourly, i)}`} height={36} />
+              <img src={`/weathericons/weather/svg/${chooseIconHourly(forecast.hourly, i)}`} alt='' height={36} />
             </div>
             <span style={{color: forecast.hourly.temperature_2m[i] >= 0 ? 'red' : 'blue'}}>{forecast.hourly.temperature_2m[i]}{forecast.current_units.temperature_2m}</span>
             <div className='d-flex flex-row'>
               <div style={{transform: `rotate(${forecast.hourly.wind_direction_10m[i]}deg)`}}>
-                <img src={windArrow} height={24} />
+                <img src={windArrow} alt='' height={24} />
               </div>
               <span>{forecast.hourly.wind_speed_10m[i]}{forecast.current_units.wind_speed_10m}</span>
             </div>
@@ -113,7 +112,7 @@ function App() {
         <h1>{forecast.name}, {forecast.country}</h1>
         <div className='d-flex'>
           <div className='d-flex flex-column col-3'>
-            <img src={`/weathericons/weather/svg/${chooseIcon(forecast.current)}`} width={156} />
+            <img src={`/weathericons/weather/svg/${chooseIcon(forecast.current)}`} alt='' width={156} />
             <span style={{ fontSize: 36, color: forecast.current.temperature_2m >= 0 ? 'red' : 'blue'}}>{forecast.current.temperature_2m}{forecast.current_units.temperature_2m}</span>
           </div>
           <div className='d-flex flex-column col-9 shorttime-forecast'>
@@ -141,7 +140,7 @@ function App() {
         </form>
         <section id='weather'>
           {
-            loading ? <img className='loading' src={loadingImg} width={63} /> : null
+            loading ? <img className='loading' src={loadingImg} alt='loading' width={63} /> : null
           }
           {
             !loading && forecast && forecast.current ? ForecastLoaded() :
