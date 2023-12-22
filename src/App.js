@@ -110,7 +110,7 @@ function App() {
 
     return (
       <>
-        <h1>{forecast.name}</h1>
+        <h1>{forecast.name}, {forecast.country}</h1>
         <div className='d-flex'>
           <div className='d-flex flex-column col-3'>
             <img src={`/weathericons/weather/svg/${chooseIcon(forecast.current)}`} width={156} />
